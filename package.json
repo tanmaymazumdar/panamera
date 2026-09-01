@@ -1,0 +1,37 @@
+{
+  "name": "kitchen-sink",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "author": "Tanmay Mazumdar",
+  "license": "ISC",
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "build": "rspack build",
+    "dev": "rspack dev",
+    "preview": "rspack preview"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@rspack/cli": "^2.2.1",
+    "@rspack/core": "^2.2.1",
+    "@rspack/dev-server": "^2.2.0",
+    "@rspack/plugin-react-refresh": "^2.0.2",
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "react-refresh": "^0.18.0",
+    "typescript": "^6.0.3"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.25.0",
+      "onFail": "download"
+    }
+  }
+}
