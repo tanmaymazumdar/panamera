@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "env": {
+    "browser": true
+  },
+  "plugins": ["eslint", "import", "oxc", "promise", "react", "react-perf", "typescript", "vitest"],
+  "rules": {
+    "eslint/array-callback-return": "error",
+    "eslint/arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": false }],
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": ["warn", { "allowConstantExport": true }]
+  },
+  "settings": {
+    "react": {
+      "version": "18.2.0"
+    },
+    "custom": {
+      "option": true
+    }
+  },
+}
