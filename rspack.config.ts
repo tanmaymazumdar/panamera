@@ -1,6 +1,7 @@
 import { defineConfig } from '@rspack/cli'
 import { rspack, type SwcLoaderOptions } from '@rspack/core'
 import { ReactRefreshRspackPlugin } from '@rspack/plugin-react-refresh'
+import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin'
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -87,5 +88,9 @@ export default defineConfig({
       template: './index.html',
     }),
     isDev && new ReactRefreshRspackPlugin(),
+    process.env.RSDOCTOR &&
+      new RsdoctorRspackPlugin({
+        mode: 'brief',
+      })
   ],
 })
