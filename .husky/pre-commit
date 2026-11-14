@@ -1,0 +1,93 @@
+#!/usr/bin/env sh
+
+set -eu
+
+ROOT=$(git rev-parse --show-toplevel)
+cd "$ROOT"
+
+BLACKLIST="$ROOT/.husky/pre-commit-blacklist"
+GIT_TMP=$(mktemp)
+FMT_TMP=$(mktemp)
+LINT_TMP=$(mktemp)
+trap 'rm -f "$GIT_TMP" "$FMT_TMP" "$LINT_TMP"' EXIT
+
+git diff --cached --name-only --diff-filter=ACMR -z > "$GIT_TMP"
+
+_is_allowed_ext() {
+  case "$1" in
+    *.ts | *.tsx | *.js | *.jsx | *.css | *.md | *.svg) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+_is_lint_ext() {
+  case "$1" in
+    *.ts | *.tsx | *.js | *.jsx) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+_is_blacklisted() {
+  _path=$1
+  if [ ! -f "$BLACKLIST" ]; then
+    return 1
+  fi
+
+  while IFS= read -r _line || [ -n "$_line" ]; do
+    case "$_line" in
+      '' | \#*) continue ;;
+    esac
+
+    if [ "$_path" = "$_line" ]; then
+      return 0
+    fi
+
+    case "$_line" in
+      \**)
+        _suffix=${_line#*}
+        case "$_path" in *"$_suffix") return 0 ;; esac
+        ;;
+    esac
+
+    case "$_line" in
+      */)
+        case "$_path" in "$_line"*) return 0 ;; esac
+        ;;
+    esac
+  done < "$BLACKLIST"
+
+  return 1
+}
+
+while IFS= read -r -d '' _path; do
+  [ -n "$_path" ] || continue
+  _is_allowed_ext "$_path" || continue
+  _is_blacklisted "$_path" && continue
+
+  printf '%s\0' "$_path" >> "$FMT_TMP"
+
+  if _is_lint_ext "$_path"; then
+    printf '%s\0' "$_path" >> "$LINT_TMP"
+  fi
+done < "$GIT_TMP"
+
+if [ ! -s "$FMT_TMP" ] && [ ! -s "$LINT_TMP" ]; then
+  exit 0
+fi
+
+if [ -s "$FMT_TMP" ]; then
+  xargs -0 pnpm exec oxfmt \
+    -c "$ROOT/.oxfmtrc.json" \
+    --disable-nested-config \
+    --no-error-on-unmatched-pattern \
+    --write -- < "$FMT_TMP"
+  xargs -0 git add -- < "$FMT_TMP"
+fi
+
+if [ -s "$LINT_TMP" ]; then
+  xargs -0 pnpm exec oxlint \
+    -c "$ROOT/.oxlintrc.json" \
+    --disable-nested-config -- < "$LINT_TMP"
+fi
+
+pnpm run check-types

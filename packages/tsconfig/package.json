@@ -1,0 +1,31 @@
+{
+  "name": "@panamera/tsconfig",
+  "description": "Centralized TypeScript configs for all packages",
+  "version": "0.0.0",
+  "private": true,
+  "author": "Tanmay Mazumdar <mazumdar.t19@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "tsconfig.*.json"
+  ],
+  "exports": {
+    "./app": "./tsconfig.app.json",
+    "./node": "./tsconfig.node.json",
+    "./tsconfig.app.json": "./tsconfig.app.json",
+    "./tsconfig.node.json": "./tsconfig.node.json",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependenciesMeta": {
+    "@types/node": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
+  }
+}
