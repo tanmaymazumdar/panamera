@@ -1,0 +1,10 @@
+{
+  "extends": "@panamera/tsconfig/app",
+  "include": ["src"],
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false
+  }
+}
