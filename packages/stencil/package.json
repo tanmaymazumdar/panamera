@@ -1,0 +1,35 @@
+{
+  "name": "@panamera/stencil",
+  "description": "Web Component library for create UI",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Tanmay Mazumdar <mazumdar.t19@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm check-types && tsdown",
+    "check-types": "tsc --noEmit",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
+  },
+  "devDependencies": {
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  },
+  "dependencies": {
+    "@panamera/tsconfig": "workspace:*",
+    "lit-html": "^3.3.3"
+  }
+}
