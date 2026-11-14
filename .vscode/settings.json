@@ -1,0 +1,53 @@
+{
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": "always",
+    "source.organizeImports": "always",
+    "source.fixAll.oxc": "always",
+  },
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "editor.tabSize": 2,
+  "editor.indentSize": "tabSize",
+  "eslint.enable": true,
+  "eslint.useFlatConfig": true,
+  "eslint.validate": [
+    "css",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "markdown",
+    "typescript",
+    "typescriptreact",
+  ],
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto",
+    },
+  ],
+  "files.exclude": {
+    "**/coverage": true,
+  },
+  "files.readonlyInclude": {
+    "**/routeTree.gen.ts": true,
+  },
+  "files.watcherExclude": {
+    "**/dist": true,
+    "**/routeTree.gen.ts": true,
+  },
+  "oxc.enable": true,
+  "oxc.typeAware": true,
+  "search.exclude": {
+    "**/routeTree.gen.ts": true,
+  },
+  "sonarlint.connectedMode.project": {
+    "connectionId": "studio",
+    "projectKey": "studio",
+  },
+  "workbench.colorCustomizations": {
+    "editorLineNumber.foreground": "#777777",
+  },
+}

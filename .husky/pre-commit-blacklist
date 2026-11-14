@@ -1,0 +1,12 @@
+# Paths skipped by pre-commit format/lint (one rule per line).
+# Lines starting with # are ignored.
+#
+# Matching:
+#   exact path     apps/web/src/foo.tsx
+#   suffix         *.stories.tsx   (path ends with the part after *)
+#   directory      graphify-out/   (path is under this prefix)
+#
+# Examples (uncomment to use):
+# *.svg
+# *.stories.tsx
+graphify-out/

@@ -1,0 +1,41 @@
+{
+  "name": "panamera-monorepo",
+  "description": "Full feature SaaS dashboard",
+  "version": "1.0.0",
+  "type": "module",
+  "author": "Tanmay Mazumdar <mazumdar.t19@gmail.com>",
+  "license": "MIT",
+  "keywords": [],
+  "scripts": {
+    "check-types": "pnpm -r --if-present run check-types",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanmaymazumdar/panamera.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tanmaymazumdar/panamera/issues"
+  },
+  "homepage": "https://github.com/tanmaymazumdar/panamera",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^12.18.0",
+      "onFail": "download"
+    }
+  },
+  "engines": {
+    "node": ">=24.x || >=26.x",
+    "pnpm": ">=12.x"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "typescript": "catalog:"
+  }
+}

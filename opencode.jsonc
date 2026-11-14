@@ -1,0 +1,6 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": true,
+  "lsp": true,
+  "instructions": [".cursor/rules/**/*.mdc"],
+}
